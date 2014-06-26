@@ -28,7 +28,14 @@
 
 			$elem.after(holder);
 			holder.trigger('create');
-
+			
+			holder.find("input").change(function () {
+                if ($(this).is(":checked")) {
+                    $("[data-multiselect='" + $(this).attr("id") + "']").prop("selected", true).parent().trigger('change');
+                } else {
+                    $("[data-multiselect='" + $(this).attr("id") + "']").removeAttr('selected').parent().trigger('change');
+                }
+            });
 			
 			$elem.hide();
 			$('label[for=' + $elem.attr('id') + ']').hide();
