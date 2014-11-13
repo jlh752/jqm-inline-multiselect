@@ -1,58 +1,68 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html> 
+<html> 
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1"> 
+	<title>jqm-inline demo</title>
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.2/jquery.mobile.min.css" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.2/jquery.mobile.min.js"></script>
+	<script src="inline-multiselect.jqm.js"></script>
+</head> 
+<body> 
 
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Jqm-inline-multiselect : use a checkbox group to represent a multiselect in jquery mobile">
+<div data-role="page">
+	<div data-role="header">
+		<h1>jqm-inlinemultiselect demo</h1>
+	</div>
+	<div data-role="content">	
+		<p>
+			<a href="#popup" data-role="button" data-theme="b" data-inline='true' data-rel="dialog">Open dialog</a> 
+		</p>		
+	</div>
+	<div data-role="footer">
+	</div>
+</div>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+<div data-role="dialog" id="popup">
+	<div data-role="header" data-theme="b">
+		<h1>Dialog</h1>
+	</div>
 
-    <title>Jqm-inline-multiselect</title>
-  </head>
+	<div data-role="content" data-theme="a">
+		<form action="selectbiz" role="form" method="post" >
+			<h1>Select businesses</h1>
 
-  <body>
+			<div data-role="fieldcontain">
+				<label for="biz">Businesses:</label>
+				<select id="biz" name="biz" multiple="multiple" data-role="inlinemultiselect">
+					<option value="0">Cisc O'systems</option>
+					<option value="1">Clumsy Student Movers</option>
+					<option value="2">Compu-Global-Hyper-Mega-Net</option>
+					<option value="3">Crazy Vaclav's Place of Automobiles</option>
+					<option value="4" selected="selected">Flancrest Enterprises</option>
+					<option value="5">J.R.R. Toykin's</option>
+					<option value="6">National Ringworm Association</option>
+					<option value="7">Starving Teachers Moving Co.</option>
+				</select>
+			</div>
+			<a href="jqm-inline.html" data-role="button" data-rel="back" data-theme="a">OK</a>       
+		</form>
+	</div>
+</div>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/jlh752/jqm-inline-multiselect">View on GitHub</a>
+<script>
+	//some sort of code that monitors the multiselect
+	$(function(){
+		$("#biz").change(function(e){
+			var str = "";
+			$( "#biz option:selected" ).each(function() {
+				str += $( this ).text() + ", ";
+			});
+			console.log(str);
+		});
+	});
+</script>
 
-          <h1 id="project_title">Jqm-inline-multiselect</h1>
-          <h2 id="project_tagline">use a checkbox group to represent a multiselect in jquery mobile</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/jlh752/jqm-inline-multiselect/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/jlh752/jqm-inline-multiselect/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
-<a id="jqm-inline-multiselect" class="anchor" href="#jqm-inline-multiselect" aria-hidden="true"><span class="octicon octicon-link"></span></a>jqm-inline-multiselect</h1>
-
-<p>A plugin which lets you use a checkbox group to represent a multiselect in jquery mobile.</p>
-
-<p>Why? I have a jQM form that exists in a popup, I need to use a multiselect in here. The multiselect needs to use the jQM styles but this is not possible because jQM implements it as a popup and you can't have chained popups in jQM. This plugin works around that by displaying the multiselect as a group of checkboxes (where user interactions with the checkboxes alters the underlying multiselect).</p>
-
-<p>Of course, you could do this yourself easily, but it might be useful if you are working with unchangeable legacy code which expects to be dealing with a multiselect.</p>
-
-<p>There are not many features currently, just enough to do what I need it to do, but this may be expanded in future.</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Jqm-inline-multiselect maintained by <a href="https://github.com/jlh752">jlh752</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
-  </body>
+</body>
 </html>
